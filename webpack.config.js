@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
     context: __dirname,
     entry: {
-        main: ['./src/main.js', 'webpack-hot-middleware/client?reload=true']
+        main: ['./src/entries/main.js', 'webpack-hot-middleware/client?reload=true']
     },
     output: {
         path: path.resolve(__dirname, 'app/public/build'),
