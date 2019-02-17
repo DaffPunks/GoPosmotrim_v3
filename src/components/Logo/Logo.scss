@@ -1,0 +1,10 @@
+@import "styles/variables";
+
+.logo {
+    width: $cell-wh;
+    height: $cell-wh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

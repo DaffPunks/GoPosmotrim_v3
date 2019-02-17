@@ -1,14 +1,19 @@
 import React from 'react';
-import {Link, withRouter} from 'react-router-dom';
-import routes from '../../routes';
+import {withRouter} from 'react-router-dom';
+
+import Sidebar from "components/Sidebar/Sidebar";
+import Header from "components/Header/Header";
+
 
 class Home extends React.Component {
     render() {
         return (
             <div>
-
-                Home
-                <Link to={routes.rooms}>asd</Link>
+                <div>
+                    <Sidebar>
+                        <Header/>
+                    </Sidebar>
+                </div>
             </div>
         );
     }

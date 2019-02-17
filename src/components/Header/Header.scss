@@ -1,4 +1,6 @@
+@import "styles/variables";
+
 .header {
   width: 100%;
-  height: 80px;
+  height: $cell-wh;
 }
