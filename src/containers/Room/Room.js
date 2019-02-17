@@ -1,13 +1,18 @@
 import React from 'react';
 import {NavLink, withRouter} from "react-router-dom";
-import routes from "../../routes";
+
+import Sidebar from 'components/Sidebar/Sidebar'
+import Player from "components/Player/Player";
+import Header from "../../components/Header/Header";
 
 class Room extends React.Component {
     render() {
         return (
             <div>
-                Room
-                <NavLink to={routes.root}/>
+                <Sidebar>
+                    <Header/>
+                    <Player/>
+                </Sidebar>
             </div>
         );
     }
