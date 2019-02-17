@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
+    mode: "development",
     context: __dirname,
     entry: {
         main: ['./src/entries/main.js', 'webpack-hot-middleware/client?reload=true']
@@ -9,6 +10,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'app/public/build'),
         publicPath: '/build/'
+    },
+    resolve: {
+        modules: [path.resolve(__dirname, './src'), 'node_modules']
     },
     module: {
         rules: [

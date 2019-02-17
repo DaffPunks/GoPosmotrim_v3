@@ -25,7 +25,7 @@ app.use(wpmw);
 const wphmw = webpackHotMiddleware(compiler);
 app.use(wphmw);
 
-router.get('/', (req, res, next) => {
+router.get('*', (req, res, next) => {
     res.send(mainView());
 });
 
