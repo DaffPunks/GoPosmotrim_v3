@@ -11,7 +11,6 @@ export default class Router extends React.Component {
         return (
             <div>
                 <Route exact path="/" component={Room}/>
-                <Route path="/home" component={Home}/>
             </div>
         );
     }
