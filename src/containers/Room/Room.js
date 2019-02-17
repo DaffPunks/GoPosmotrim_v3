@@ -1,9 +1,9 @@
 import React from 'react';
-import {NavLink, withRouter} from "react-router-dom";
+import {withRouter} from 'react-router-dom';
 
-import Sidebar from 'components/Sidebar/Sidebar'
-import Player from "components/Player/Player";
-import Header from "../../components/Header/Header";
+import Sidebar from 'components/Sidebar/Sidebar';
+import Player from 'components/Player/Player';
+import Header from 'components/Header/Header';
 
 class Room extends React.Component {
     render() {

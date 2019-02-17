@@ -1,8 +1,7 @@
-'use strict';
-const {resolve} = require('path');
+// const { resolve } = require('path');
 
-const publicDir = resolve(__dirname, '../public');
-const buildDir = resolve(publicDir, 'build');
+// const publicDir = resolve(__dirname, '../public');
+// const buildDir = resolve(publicDir, 'build');
 
 function srcScript(src, {async = false, defer = false} = {}) {
     return `<script${async ? ' async' : ''}${defer ? ' defer' : ''} src="${src}"></script>`;
@@ -20,7 +19,7 @@ function inlineStylesheet(content, nonce) {
     return `<style ${nonce ? `nonce="${nonce}"` : ''}>${content}</style>`;
 }
 
-function getResourcePath(name) {
+function getResourcePath() {
     // const webpackManifest = require(resolve(buildDir, 'manifest.json'));
     // return webpackManifest[name];
 }
@@ -36,7 +35,7 @@ function addWebpackStyle(name) {
 }
 
 function addWebpackScript(name) {
-    const resource = 'build/' + name;
+    const resource = `build/${name}`;
 
     return srcScript(resource, {defer: true});
 }

@@ -13,7 +13,7 @@ export default function configureStore(services) {
     }
 
     return createStore(
-        // rootReducer,
-        applyMiddleware(...middlewares)
+        rootReducer,
+        applyMiddleware(...middlewares),
     );
 }

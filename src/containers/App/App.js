@@ -5,7 +5,6 @@ import Router from 'containers/Router/Router';
 
 
 class App extends React.Component {
-
     render() {
         return (
             <Router/>

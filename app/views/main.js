@@ -1,6 +1,3 @@
-'use strict';
 const createStructure = require('./createStructure');
 
-module.exports = () => {
-    return createStructure('main');
-};
+module.exports = () => createStructure('main');

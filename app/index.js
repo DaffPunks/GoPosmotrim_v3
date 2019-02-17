@@ -1,8 +1,9 @@
+/* eslint-disable */
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require("webpack-hot-middleware");
+const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const config = require('../webpack.config.js');
 
@@ -17,9 +18,8 @@ const mainView = require('./views/main');
 const wpmw = webpackDevMiddleware(compiler,
     {
         publicPath: config.output.publicPath,
-        stats: {colors: true}
-    }
-);
+        stats: {colors: true},
+    });
 app.use(wpmw);
 
 const wphmw = webpackHotMiddleware(compiler);
