@@ -2,7 +2,7 @@ import pathToRegexp from 'path-to-regexp';
 
 const routes = {
     root: '/',
-    rooms: '/rooms'
+    room: '/room/:id'
 };
 
 export function createHref(route, params, options) {

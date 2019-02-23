@@ -35,7 +35,7 @@ function addWebpackStyle(name) {
 }
 
 function addWebpackScript(name) {
-    const resource = `build/${name}`;
+    const resource = `/build/${name}`;
 
     return srcScript(resource, {defer: true});
 }

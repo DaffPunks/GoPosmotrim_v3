@@ -1,0 +1,14 @@
+@import "styles/variables";
+
+.sidebar-button {
+    width: $cell-wh;
+    height: $cell-wh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #323232;
+    }
+}
