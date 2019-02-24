@@ -2,6 +2,7 @@
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
+const fs = require('fs');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
@@ -25,10 +26,25 @@ app.use(wpmw);
 const wphmw = webpackHotMiddleware(compiler);
 app.use(wphmw);
 
-router.get('*', (req, res, next) => {
+router.get('*', (req, res) => {
     res.send(mainView());
 });
 
 app.use(router);
 
-app.listen(3000, () => console.log('listening on 3000'));
+const sock = 'app/run/node.sock';
+
+if (fs.existsSync(sock)) {
+    fs.unlinkSync(sock);
+}
+
+const server = app.listen(sock, () => {
+    fs.chmod(sock, 0o666, (err) => {
+        if (err instanceof Error) {
+            console.log(err);
+        }
+    });
+    console.log(`listening on ${sock}`)
+});
+
+require('./ws')(server);

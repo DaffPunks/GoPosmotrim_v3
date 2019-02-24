@@ -10,8 +10,8 @@ class Sidebar extends React.Component {
     static propTypes = {
         children: PropTypes.node.isRequired,
         actions: PropTypes.arrayOf(PropTypes.shape({
-            icon: PropTypes.oneOf(['users']).isRequired,
-            handler: PropTypes.func.isRequire
+            icon: PropTypes.string.isRequired,
+            handler: PropTypes.func.isRequired
         })),
         onLogoClick: PropTypes.func
     };
@@ -25,8 +25,8 @@ class Sidebar extends React.Component {
 
         return (
             <div>
-                {actions.map((action) =>
-                    <SidebarButton icon={action.icon} onClick={action.handler}/>
+                {actions.map((action, key) =>
+                    <SidebarButton key={key} icon={action.icon} onClick={action.handler}/>
                 )}
             </div>
         );
