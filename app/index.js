@@ -1,4 +1,6 @@
 /* eslint-disable */
+require('dotenv').load();
+
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
@@ -46,5 +48,7 @@ const server = app.listen(sock, () => {
     });
     console.log(`listening on ${sock}`)
 });
+
+require('./db');
 
 require('./ws')(server);
