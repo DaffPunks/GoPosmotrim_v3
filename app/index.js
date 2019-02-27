@@ -7,7 +7,6 @@ const fs = require('fs');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../webpack.config.js');
-const mainView = require('./views/main');
 const sock = 'app/run/node.sock';
 
 const app = express();
@@ -19,12 +18,6 @@ const wpmw = webpackDevMiddleware(compiler, {publicPath: config.output.publicPat
 const wphmw = webpackHotMiddleware(compiler);
 app.use(wpmw);
 app.use(wphmw);
-
-/* Send everything to app */
-router.get('*', (req, res) => {
-    res.send(mainView());
-});
-app.use(router);
 
 /* Listen Server */
 if (fs.existsSync(sock)) {
@@ -39,6 +32,9 @@ const server = app.listen(sock, () => {
     });
     console.log(`listening on ${sock}`)
 });
+
+/* Connect Router */
+require('./controllers')(app);
 
 /* Connect Database */
 require('./db');
