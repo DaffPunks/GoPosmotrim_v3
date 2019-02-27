@@ -1,41 +1,32 @@
 /* eslint-disable */
 require('dotenv').load();
 
-const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const fs = require('fs');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-
 const config = require('../webpack.config.js');
+const mainView = require('./views/main');
+const sock = 'app/run/node.sock';
 
 const app = express();
-
 const router = express.Router();
-
 const compiler = webpack(config);
 
-const mainView = require('./views/main');
-
-const wpmw = webpackDevMiddleware(compiler,
-    {
-        publicPath: config.output.publicPath,
-        stats: {colors: true},
-    });
-app.use(wpmw);
-
+/* DevMiddleware */
+const wpmw = webpackDevMiddleware(compiler, {publicPath: config.output.publicPath, stats: {colors: true}});
 const wphmw = webpackHotMiddleware(compiler);
+app.use(wpmw);
 app.use(wphmw);
 
+/* Send everything to app */
 router.get('*', (req, res) => {
     res.send(mainView());
 });
-
 app.use(router);
 
-const sock = 'app/run/node.sock';
-
+/* Listen Server */
 if (fs.existsSync(sock)) {
     fs.unlinkSync(sock);
 }
@@ -49,6 +40,8 @@ const server = app.listen(sock, () => {
     console.log(`listening on ${sock}`)
 });
 
+/* Connect Database */
 require('./db');
 
+/* Create Socket connection */
 require('./ws')(server);
