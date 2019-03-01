@@ -4,6 +4,7 @@ require('dotenv').load();
 const express = require('express');
 const webpack = require('webpack');
 const fs = require('fs');
+const bodyParser = require('body-parser');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../webpack.config.js');
@@ -18,6 +19,7 @@ const wpmw = webpackDevMiddleware(compiler, {publicPath: config.output.publicPat
 const wphmw = webpackHotMiddleware(compiler);
 app.use(wpmw);
 app.use(wphmw);
+app.use(bodyParser.json());
 
 /* Listen Server */
 if (fs.existsSync(sock)) {
