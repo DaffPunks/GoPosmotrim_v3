@@ -5,7 +5,7 @@ module.exports = {
     mode: "development",
     context: __dirname,
     entry: {
-        main: ['./src/entries/main.js', 'webpack-hot-middleware/client?reload=true']
+        main: ['@babel/polyfill', './src/entries/main.js', 'webpack-hot-middleware/client?reload=true']
     },
     output: {
         path: path.resolve(__dirname, 'app/public/build'),

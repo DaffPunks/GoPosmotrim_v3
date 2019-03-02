@@ -10,7 +10,7 @@ router.get('/', async function(req, res) {
 
     const rooms = await RoomModel.findAll();
 
-    res.status(200).json([{rooms}]);
+    res.status(200).json(rooms);
 
 });
 

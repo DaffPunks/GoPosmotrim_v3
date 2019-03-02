@@ -1,5 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import {createStructuredSelector} from 'reselect';
+import {compose} from 'recompose';
 import openSocket from 'socket.io-client';
 
 import Sidebar from 'components/Sidebar/Sidebar';
@@ -7,12 +10,15 @@ import Player from 'components/Player/Player';
 import Header from 'components/Header/Header';
 import {Users, List} from 'components/Icon/Icon';
 import routes, {createHref} from "routes";
+import {selectRooms, fetchRooms} from "store/reducers/room";
 
 class Room extends React.Component {
 
     componentDidMount() {
         console.log(this.props);
-        const {match: {params}} = this.props;
+        const {match: {params}, fetchRooms} = this.props;
+
+        fetchRooms();
 
         this.socket = openSocket();
 
@@ -64,4 +70,15 @@ class Room extends React.Component {
     }
 }
 
-export default withRouter(Room);
+const mapStateToProps = createStructuredSelector({
+    rooms: selectRooms
+});
+
+const mapDispatchToProps = {
+    fetchRooms
+};
+
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(Room);
