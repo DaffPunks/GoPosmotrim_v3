@@ -20,13 +20,13 @@ router.get('/', async function(req, res) {
  **/
 router.post('/', [authMiddleware], async function(req, res) {
 
-    await RoomModel.create({
+    const room = await RoomModel.create({
         name: '1',
         playerID: 1,
         ownerID: 1
     });
 
-    res.status(200).json('OK');
+    res.status(200).json(room);
 
 });
 
