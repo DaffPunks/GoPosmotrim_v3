@@ -7,32 +7,4 @@
         width: 100%;
         height: 768px;
     }
-
-    &__progress {
-        position: relative;
-        margin: 20px;
-        width: calc(100% - 40px);
-        height: 6px;
-        background-color: white;
-        cursor: pointer;
-    }
-
-    &__progress-point {
-        position: absolute;
-        left: -5px;
-        top: -5px;
-        width: 14px;
-        height: 14px;
-        border-radius: 100px;
-        background-color: #1F60B2;
-    }
-
-    &__progress-inside {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        background-color: #1F60B2;
-    }
-
 }

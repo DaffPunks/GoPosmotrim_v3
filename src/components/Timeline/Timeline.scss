@@ -1,0 +1,50 @@
+.timeline {
+    position: relative;
+    margin: 20px;
+    width: calc(100% - 40px);
+    height: 4px;
+    background-color: rgba(255,255,255,.4);
+    cursor: pointer;
+    transition: height .1s ease-in-out;
+
+    &:hover {
+        height: 6px;
+
+        .timeline__padding {
+            height: 18px;
+        }
+
+        .timeline__point {
+            //transform: scale(1);
+        }
+    }
+
+    &__padding {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 16px;
+        width: 100%;
+    }
+
+    &__point {
+        position: absolute;
+        left: -6px;
+        top: -3px;
+        width: 12px;
+        height: 12px;
+        border-radius: 100px;
+        background-color: #1F60B2;
+        //transform: scale(0);
+        //transition: height .1s ease-in-out, width .1s ease-in-out, left .1s ease-in-out;
+        transition: transform .1s ease-in-out;
+    }
+
+    &__inside {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background-color: #1F60B2;
+    }
+}

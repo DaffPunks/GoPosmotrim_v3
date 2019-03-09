@@ -2,114 +2,107 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 
 import './Player.scss';
+import Timeline from "../Timeline/Timeline";
 
 class Player extends React.Component {
 
     state = {
-        transitionX: 0,
-        initialX: 0,
-        maxX: 0,
-        percent: 0
+        progress: 0,
+        seek: false
     };
 
-
-    onSeekMouseUp = e => {
-        this.player.seekTo(parseFloat(e.target.value))
-    };
-
-    ref = player => {
+    setPlayerRef = player => {
         this.player = player;
+
+        // this.sendTime();
     };
 
-    progressRef = progress => {
-        const initial = progress.getBoundingClientRect();
+    sendTime() {
 
-        this.setState({
-            initialX: initial.x,
-            transitionX: initial.x,
-            maxX: initial.width
-        });
-    };
+        /*setInterval(() => {
+            const {play} = this.state;
 
-    onMouseDown = (e) => {
-        this.setState(
-            {
-                transitionX: e.clientX
-            },
-            () => {
-                document.addEventListener('mousemove', this.onMouseMove);
-                document.addEventListener('mouseup', this.onMouseUp);
+            const playedSeconds = this.player.getCurrentTime();
+            const duration = this.player.getDuration();
+
+            if (play) {
+                this.setState({progress: playedSeconds / duration});
             }
-        );
-    };
-
-    onMouseUp = () => {
-        document.removeEventListener('mousemove', this.onMouseMove);
-        document.removeEventListener('mouseup', this.onMouseUp);
-
-        this.seek();
-    };
-
-    onMouseMove = (e) => {
-        const {initialX, maxX} = this.state;
-        let transition = e.clientX;
-
-        if (e.clientX - initialX < 0) {
-            transition = initialX;
-        }
-
-        if (e.clientX - initialX > maxX) {
-            transition = initialX + maxX;
-        }
-
-        this.setState({transitionX: transition});
-    };
-
-    onLineClick = async (e) => {
-        await this.setState({transitionX: e.clientX});
-
-        this.seek();
-    };
-
-    seek = async () => {
-        const {initialX, transitionX, maxX} = this.state;
-
-        const lengthPercent = (transitionX - initialX) / (maxX / 100) / 100;
-
-        this.setState({percent: lengthPercent});
-
-        this.player.seekTo(parseFloat(lengthPercent))
+        }, 100);*/
     }
 
+    onProgress = ({played}) => {
+        const {seeking} = this.state;
+
+        if (!seeking) {
+            this.setState({progress: played});
+        }
+    };
+
+    onPlay = () => {
+        console.log('PLAY');
+        this.setState({play: true});
+    };
+
+    onPause = () => {
+        console.log('PAUSE');
+        this.setState({play: false});
+    };
+
+    onBuffer = () => {
+        console.log('BUFFER');
+        this.setState({play: false});
+    };
+
+    onSeekMouseDown = () => {
+        console.log('Mouse Down');
+
+        this.setState({ seeking: true })
+    };
+
+    onSeekChange = progress => {
+        console.log('Mouse Change');
+
+        this.setState({progress});
+    };
+
+    onSeekMouseUp = progress => {
+        console.log('Mouse Up', progress);
+
+        this.setState({ seeking: false, progress });
+
+        this.player.seekTo(parseFloat(progress));
+    };
+
+
     render() {
-        const {transitionX, initialX, percent} = this.state;
+        const {progress} = this.state;
 
         return (
             <div className="player">
                 <div className="player__player">
                     <ReactPlayer
-                        ref={this.ref}
+                        ref={this.setPlayerRef}
                         playing={true}
-                        url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+                        url='https://www.youtube.com/watch?v=IHNzOHi8sJs'
                         width="100%"
                         height="100%"
                         volume={.01}
-                        onSeek={this.onSeek}
                         controls={true}
+                        onProgress={this.onProgress}
+                        onPause={this.onPause}
+                        onPlay={this.onPlay}
+                        onBuffer={this.onBuffer}
+                        progressInterval={100}
                     />
-                    <div></div>
                 </div>
                 <div className='player__controls'>
-                    <div className="player__progress"
-                         ref={this.progressRef}
-                         onClick={this.onLineClick}
-                    >
-                        <div className="player__progress-point"
-                             style={{transform: `translateX(${transitionX - initialX}px)`}}
-                             onMouseDown={this.onMouseDown}
-                        />
-                        <div className="player__progress-inside" style={{width: `${percent * 100}%`}}/>
-                    </div>
+                    <Timeline
+                        onChange={this.onSeekChange}
+                        onMouseDown={this.onSeekMouseDown}
+                        onMouseUp={this.onSeekMouseUp}
+                        progress={progress}
+                    />
                 </div>
             </div>
         );
