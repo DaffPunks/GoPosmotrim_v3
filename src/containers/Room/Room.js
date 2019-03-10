@@ -8,7 +8,7 @@ import openSocket from 'socket.io-client';
 import Sidebar from 'components/Sidebar/Sidebar';
 import Player from 'components/Player/Player';
 import Header from 'components/Header/Header';
-import {Users, List} from 'components/Icon/Icon';
+import {Users, List} from 'components/Icons';
 import routes, {createHref} from "routes";
 import {selectRooms, fetchRooms} from "store/reducers/room";
 

@@ -14,7 +14,9 @@ class SidebarButton extends React.Component {
 
         return (
             <div className="sidebar-button" onClick={onClick}>
-                <img className="sidebar-button__icon" src={icon} alt="icon"/>
+                <div className="sidebar-button__icon">
+                    {icon}
+                </div>
             </div>
         );
     }

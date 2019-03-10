@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Logo as LogoIcon} from 'components/Icon/Icon';
+import LogoIcon from 'components/Icons/Logo';
 
 import './Logo.scss';
 
@@ -15,7 +15,7 @@ class Logo extends React.Component {
 
         return (
             <div className="logo" onClick={onClick}>
-                <img src={LogoIcon} alt="Logo"/>
+                <LogoIcon width={47} height={27}/>
             </div>
         );
     }

@@ -2,7 +2,8 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 
 import './Player.scss';
-import Timeline from "../Timeline/Timeline";
+import Timeline from "components/Timeline/Timeline";
+import Controls from "../Controls/Controls";
 
 const youtubeConfig = {
     disablekb: 1
@@ -82,16 +83,11 @@ class Player extends React.Component {
                         onPlay={this.onPlay}
                         onBuffer={this.onBuffer}
                         progressInterval={100}
-                        config={{youtube: youtubeConfig}}
+                        // config={{youtube: youtubeConfig}}
                     />
                 </div>
                 <div className='player__controls'>
-                    <Timeline
-                        onChange={this.onSeekChange}
-                        onMouseDown={this.onSeekMouseDown}
-                        onMouseUp={this.onSeekMouseUp}
-                        progress={progress}
-                    />
+                    <Controls/>
                 </div>
             </div>
         );
