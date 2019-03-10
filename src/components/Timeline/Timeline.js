@@ -19,14 +19,6 @@ class Timeline extends React.Component {
         showTime: true
     };
 
-    componentWillReceiveProps() {
-        const {progress} = this.props;
-
-        this.setState({progress});
-
-        // this.setProgress(progress);
-    }
-
     progressRef = progress => {
         const initial = progress.getBoundingClientRect();
 
@@ -36,18 +28,6 @@ class Timeline extends React.Component {
             endX: initial.width
         });
     };
-
-    setProgress(progress) {
-        const {endX, pressed} = this.state;
-
-        console.log('SETPROGRESS', progress, pressed);
-
-        if (!pressed) {
-            this.setState({
-                currentX: endX * progress
-            });
-        }
-    }
 
     getProgress(e) {
         const {startX, endX} = this.state;
@@ -93,21 +73,6 @@ class Timeline extends React.Component {
         onChange(progress);
     };
 
-    onLineClick = async (e) => {
-        await this.setState({currentX: e.clientX});
-
-        this.seek();
-    };
-
-    seek = async () => {
-        const {onSeek} = this.props;
-        const {startX, currentX, endX} = this.state;
-
-        const percent = (currentX) / (endX / 100) / 100;
-
-        onSeek(percent);
-    };
-
     render() {
         const {progress} = this.props;
         const {endX} = this.state;
@@ -122,13 +87,14 @@ class Timeline extends React.Component {
 
                 </div>
                 <div
-                    className="timeline__point"
-                    style={{transform: `translateX(${endX * progress}px)`}}
-                />
-                <div
                     className="timeline__inside"
                     style={{width: `${endX * progress}px`}}
-                />
+                >
+                    <div
+                        className="timeline__point"
+                        // style={{transform: `translateX(${endX * progress}px)`}}
+                    />
+                </div>
             </div>
         );
     }

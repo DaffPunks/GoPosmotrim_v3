@@ -4,6 +4,10 @@ import ReactPlayer from 'react-player';
 import './Player.scss';
 import Timeline from "../Timeline/Timeline";
 
+const youtubeConfig = {
+    disablekb: 1
+};
+
 class Player extends React.Component {
 
     state = {
@@ -13,23 +17,7 @@ class Player extends React.Component {
 
     setPlayerRef = player => {
         this.player = player;
-
-        // this.sendTime();
     };
-
-    sendTime() {
-
-        /*setInterval(() => {
-            const {play} = this.state;
-
-            const playedSeconds = this.player.getCurrentTime();
-            const duration = this.player.getDuration();
-
-            if (play) {
-                this.setState({progress: playedSeconds / duration});
-            }
-        }, 100);*/
-    }
 
     onProgress = ({played}) => {
         const {seeking} = this.state;
@@ -87,13 +75,14 @@ class Player extends React.Component {
                         url='https://www.youtube.com/watch?v=IHNzOHi8sJs'
                         width="100%"
                         height="100%"
-                        volume={.01}
-                        controls={true}
+                        volume={.02}
+                        controls={false}
                         onProgress={this.onProgress}
                         onPause={this.onPause}
                         onPlay={this.onPlay}
                         onBuffer={this.onBuffer}
                         progressInterval={100}
+                        config={{youtube: youtubeConfig}}
                     />
                 </div>
                 <div className='player__controls'>
