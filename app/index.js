@@ -39,7 +39,7 @@ const server = app.listen(sock, () => {
 require('./controllers')(app);
 
 /* Connect Database */
-require('./db');
+// require('./db');
 
 /* Create Socket connection */
 require('./ws')(server);
