@@ -5,7 +5,7 @@ import './SidebarButton.scss';
 
 class SidebarButton extends React.Component {
     static propTypes = {
-        icon: PropTypes.string.isRequired,
+        icon: PropTypes.node.isRequired,
         onClick: PropTypes.func.isRequired
     };
 

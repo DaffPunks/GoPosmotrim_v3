@@ -12,4 +12,12 @@
     &__controll {
 
     }
+
+    &--fullscreen {
+        height: 100%;
+
+        .player__player {
+            height: calc(100vh - #{$cell-wh});
+        }
+    }
 }

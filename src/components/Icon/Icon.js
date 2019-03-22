@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    size: 16
+    size: 24
 };
 
 export default function Icon({data, size, className, height, width}) {

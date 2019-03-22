@@ -19,15 +19,25 @@ class Timeline extends React.Component {
         showTime: true
     };
 
-    progressRef = progress => {
-        const initial = progress.getBoundingClientRect();
+    progressRef = timeline => {
+        this.timeline = timeline;
+
+        this.initDocumentSize();
+
+        window.addEventListener('resize', () => {
+            this.initDocumentSize();
+        });
+    };
+
+    initDocumentSize() {
+        const initial = this.timeline.getBoundingClientRect();
 
         this.setState({
             startX: initial.x,
             currentX: initial.x,
             endX: initial.width
         });
-    };
+    }
 
     getProgress(e) {
         const {startX, endX} = this.state;
@@ -92,7 +102,6 @@ class Timeline extends React.Component {
                 >
                     <div
                         className="timeline__point"
-                        // style={{transform: `translateX(${endX * progress}px)`}}
                     />
                 </div>
             </div>

@@ -36,13 +36,13 @@ class Room extends React.Component {
 
         return [
             {
-                icon: Users,
+                icon: <Users/>,
                 handler: () => {
                     this.socket.emit('GET_INFO');
                 }
             },
             {
-                icon: List,
+                icon: <List/>,
                 handler: () => {
                     this.socket.emit('SEND_MSG', {msg: 'bullshit'});
                 }

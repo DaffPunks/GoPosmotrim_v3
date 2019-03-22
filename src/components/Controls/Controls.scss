@@ -1,7 +1,63 @@
 @import "styles/variables";
 
+$button-width: 80px;
+
 .controls {
     height: $cell-wh;
     width: 100%;
     background-color: #1C1C1C;
+    position: relative;
+
+    &__timeline {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    &__main {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__play,
+    &__fullscreen {
+        height: 100%;
+        width: $button-width;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    &__volume { // TODO
+        height: 100%;
+        width: $button-width;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    &__left, &__right {
+        display: flex;
+        align-items: center;
+    }
+
+    &__video-name {
+        color: #CACACA;
+    }
+
+    &__title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    &__desc {
+        margin-top: 3px;
+        opacity: .8;
+        font-size: 14px;
+        font-weight: 400;
+    }
 }

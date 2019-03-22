@@ -10,7 +10,7 @@ class Sidebar extends React.Component {
     static propTypes = {
         children: PropTypes.node.isRequired,
         actions: PropTypes.arrayOf(PropTypes.shape({
-            icon: PropTypes.string.isRequired,
+            icon: PropTypes.node.isRequired,
             handler: PropTypes.func.isRequired
         })),
         onLogoClick: PropTypes.func
