@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../webpack.config.js');
-const sock = 'app/run/node.sock';
+// const sock = 'app/run/node.sock';
+const sock = 3000;
 
 const app = express();
 const router = express.Router();
@@ -27,11 +28,11 @@ if (fs.existsSync(sock)) {
 }
 
 const server = app.listen(sock, () => {
-    fs.chmod(sock, 0o666, (err) => {
+    /*fs.chmod(sock, 0o666, (err) => {
         if (err instanceof Error) {
             console.log(err);
         }
-    });
+    });*/
     console.log(`listening on ${sock}`)
 });
 
