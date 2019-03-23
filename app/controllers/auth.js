@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const authMiddleware = require('../components/middlewares/authMiddleware');
-// const UserModel = require('../db/models/User');
 const sha256 = require('js-sha256').sha256;
 const jwt = require('jsonwebtoken');
+const authMiddleware = require('../components/middlewares/authMiddleware');
+const UserModel = require('../db/models/User');
 
 /**
  * Get Room list
@@ -12,20 +12,20 @@ router.post('/login', async function(req, res) {
 
     const {username, password} = req.body;
 
-    /*const user = await UserModel.findOne({
+    const user = await UserModel.findOne({
         where: {
             username: username,
             password: sha256(password)
         }
-    });*/
-/*
+    });
+
     if (user == null) {
         res.status(400).json('Invalid credentials');
     }
 
-    const token = jwt.sign({ user_id: user.id }, 'gp_secret');*/
+    const token = jwt.sign({ user_id: user.id }, 'gp_secret');
 
-    // res.status(200).json(token);
+    res.status(200).json(token);
 
 });
 
@@ -35,7 +35,7 @@ router.post('/login', async function(req, res) {
  **/
 router.post('/register', async function(req, res) {
 
-    /*const {username, password} = req.body;
+    const {username, password} = req.body;
 
     const findUser = await UserModel.findOne({
         where: {
@@ -57,7 +57,7 @@ router.post('/register', async function(req, res) {
 
     const token = jwt.sign({ user_id: user.id }, 'gp_secret');
 
-    res.status(200).json(token);*/
+    res.status(200).json(token);
 });
 
 module.exports = router;
