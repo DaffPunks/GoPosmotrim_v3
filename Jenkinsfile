@@ -8,9 +8,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install --unsafe-perm node-sass'
                 sh 'npm install'
-                sh 'npm start'
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
             }
         }
     }
